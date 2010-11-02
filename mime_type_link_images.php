@@ -5,7 +5,7 @@
  */
 /*
 Plugin Name: Mime Type Link Images
-Plugin URI: http://wordpress.org/#
+Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add a PDF icon next to any PDFs added to a post
 Author: Toby Cox
 Version: 1.0.0
