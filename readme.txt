@@ -48,3 +48,12 @@ No. It searches your post for any links containing the mimetype extensions you h
 1. Screenshot of the administration screen
 2. Screenshot of plugin in action.
 
+== Changelog ==
+
+= 1.0.1 =
+* Typo in CSS caused some images not to show
+
+== Upgrade Notice ==
+
+= 1.0.1 =
+Typo in CSS caused some images not to show. Recommended for all users
