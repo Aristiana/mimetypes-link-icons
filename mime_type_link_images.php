@@ -225,11 +225,11 @@ function mimetype_to_icon($content) {
 			if(strpos($content, '.'.$mime_type.'">')!==false){
 				$add_attachment_style = true;
 				$content = str_replace('.'.$mime_type.'"', '.'.$mime_type.'" class="mtli_attachment mtli_'.$mime_type.'"', $content);
-				$mtli_css .= '.mtli_'.$mime_type.' { background-image: url('.$wp_content_url.'/plugins/mime_type_link_images/images/'.$mime_type.'-icon-'.mtli_get_option('image_size').'x'.mtli_get_option('image_size').'.'.mtli_get_option('image_type').'); }';
+				$mtli_css .= '.mtli_'.$mime_type.' { background-image: url('.$wp_content_url.'/plugins/mimetypes-link-icons/images/'.$mime_type.'-icon-'.mtli_get_option('image_size').'x'.mtli_get_option('image_size').'.'.mtli_get_option('image_type').'); }';
 			} elseif(strpos($content, '.'.$mime_type.'\'')!==false){
 				$add_attachment_style = true;
 				$content = str_replace('.'.$mime_type.'\'', '.'.$mime_type.'\' class="mtli_attachment mtli_'.$mime_type.'"', $content);
-				$mtli_css .= '.mtli_'.$mime_type.' { background-image: url('.$wp_content_url.'/plugins/mime_type_link_images/images/'.$mime_type.'-icon-'.mtli_get_option('image_size').'x'.mtli_get_option('image_size').'.'.mtli_get_option('image_type').'); }';
+				$mtli_css .= '.mtli_'.$mime_type.' { background-image: url('.$wp_content_url.'/plugins/mimetypes-link-icons/images/'.$mime_type.'-icon-'.mtli_get_option('image_size').'x'.mtli_get_option('image_size').'.'.mtli_get_option('image_type').'); }';
 			}
 		}
 		
