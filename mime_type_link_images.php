@@ -1,14 +1,14 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 1.0.1
+ * @version 1.0.2
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add a PDF icon next to any PDFs added to a post
 Author: Toby Cox
-Version: 1.0.1
+Version: 1.0.2
 Author URI: http://eagerterrier.co.uk
 */
 
@@ -222,14 +222,22 @@ function mimetype_to_icon($content) {
 	$mtli_css = '';
 	foreach($mtli_available_mime_types as $k=>$mime_type){
 		if(mtli_get_option('enable_'.$mime_type)){
-			if(strpos($content, '.'.$mime_type.'">')!==false){
-				$add_attachment_style = true;
-				$content = str_replace('.'.$mime_type.'"', '.'.$mime_type.'" class="mtli_attachment mtli_'.$mime_type.'"', $content);
-				$mtli_css .= '.mtli_'.$mime_type.' { background-image: url('.$wp_content_url.'/plugins/mimetypes-link-icons/images/'.$mime_type.'-icon-'.mtli_get_option('image_size').'x'.mtli_get_option('image_size').'.'.mtli_get_option('image_type').'); }';
+			//if($content = preg_replace('/href="([^"]+\.pdf)"/','href="\1"  class="mtli_attachment mtli_'.$mime_type.'"',$content, -1, $howmany))
+			
+			if(strpos($content, '.'.$mime_type.'"')!==false){
+				$howmany=0;
+				$content = preg_replace('/href="([^"]+\.'.$mime_type.')"/','href="\1"  class="mtli_attachment mtli_'.$mime_type.'"',$content, -1, $howmany);
+				if($howmany>0){
+					$add_attachment_style = true;
+					$mtli_css .= '.mtli_'.$mime_type.' { background-image: url('.$wp_content_url.'/plugins/mimetypes-link-icons/images/'.$mime_type.'-icon-'.mtli_get_option('image_size').'x'.mtli_get_option('image_size').'.'.mtli_get_option('image_type').'); }';
+				}
 			} elseif(strpos($content, '.'.$mime_type.'\'')!==false){
-				$add_attachment_style = true;
-				$content = str_replace('.'.$mime_type.'\'', '.'.$mime_type.'\' class="mtli_attachment mtli_'.$mime_type.'"', $content);
-				$mtli_css .= '.mtli_'.$mime_type.' { background-image: url('.$wp_content_url.'/plugins/mimetypes-link-icons/images/'.$mime_type.'-icon-'.mtli_get_option('image_size').'x'.mtli_get_option('image_size').'.'.mtli_get_option('image_type').'); }';
+				$howmany=0;
+				$content = preg_replace("/href='([^']+\.".$mime_type.")'/","href='\1'  class='mtli_attachment mtli_".$mime_type."'",$content, -1, $howmany);
+				if($howmany>0){
+					$add_attachment_style = true;
+					$mtli_css .= '.mtli_'.$mime_type.' { background-image: url('.$wp_content_url.'/plugins/mimetypes-link-icons/images/'.$mime_type.'-icon-'.mtli_get_option('image_size').'x'.mtli_get_option('image_size').'.'.mtli_get_option('image_type').'); }';
+				}
 			}
 		}
 		

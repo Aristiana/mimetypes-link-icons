@@ -50,6 +50,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 1.0.2 =
+* Fixed Bug that caused icons not to appear when some conflicting plugins were installed
+
 = 1.0.1 =
 * Typo in CSS caused some images not to show
 
