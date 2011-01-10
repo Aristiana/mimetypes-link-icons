@@ -26,7 +26,7 @@ global $mtli_css;
 
 $mtli_available_sizes = array(24,48, 64,128);
 $mtli_available_image_types = array('gif', 'png');
-$mtli_available_mime_types = array('pdf', 'doc', 'docx', 'xls', 'xlsx', 'csv', 'zip');
+$mtli_available_mime_types = array('pdf', 'doc', 'docx', 'xls', 'xlsx', 'csv', 'zip', 'ppt', 'dwg', 'dwf', 'skp', 'jpg');
 
 
 function mtli_set_option($option_name, $option_value) {
@@ -65,6 +65,11 @@ function mtli_get_option($option_name) {
     $mtli_default_options['enable_xlsx']     	    = false; 
     $mtli_default_options['enable_csv']     	    = false;  
     $mtli_default_options['enable_zip']     	    = false;  
+    $mtli_default_options['enable_ppt']     	    = false;  
+    $mtli_default_options['enable_dwg']     	    = false;  
+    $mtli_default_options['enable_dwf']     	    = false;  
+    $mtli_default_options['enable_skp']     	    = false;  
+    $mtli_default_options['enable_jpg']     	    = false;  
 
     // add default options to the database (if options already exist, 
     // add_option does nothing
@@ -118,6 +123,11 @@ function mtli_options() {
 		$mtli_options['enable_xlsx']	= ($_POST['enable_xlsx']=="true"	? true : false);
 		$mtli_options['enable_csv']		= ($_POST['enable_csv']=="true"		? true : false);
 		$mtli_options['enable_zip']		= ($_POST['enable_zip']=="true"		? true : false);
+		$mtli_options['enable_ppt']		= ($_POST['enable_ppt']=="true"		? true : false);
+		$mtli_options['enable_dwg']		= ($_POST['enable_dwg']=="true"		? true : false);
+		$mtli_options['enable_dwf']		= ($_POST['enable_dwf']=="true"		? true : false);
+		$mtli_options['enable_skp']		= ($_POST['enable_skp']=="true"		? true : false);
+		$mtli_options['enable_jpg']		= ($_POST['enable_jpg']=="true"		? true : false);
 		update_option('mimetype_link_icon_options', $mtli_options);
 
 		_e('Options saved', 'mtli')

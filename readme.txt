@@ -21,6 +21,11 @@ Supported Extensions:
 * .xls
 * .xlsx
 * .zip
+* .ppt
+* .dwg
+* .dwf
+* .skp
+* .jpg
 
 Each icon is configurable. You can choose to display a PNG with transparent background or GIF with white matte. Each icon is available in the following sizes:
 
@@ -49,6 +54,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 2. Screenshot of plugin in action.
 
 == Changelog ==
+
+= 1.0.3 =
+* Added new file type icons at request of benlikespizza - ppt, skp, dwg, dwf, jpg
 
 = 1.0.2 =
 * Fixed Bug that caused icons not to appear when some conflicting plugins were installed
