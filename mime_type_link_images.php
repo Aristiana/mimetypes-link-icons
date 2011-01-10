@@ -1,20 +1,20 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 1.0.2
+ * @version 1.0.3
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
-Description: This will add a PDF icon next to any PDFs added to a post
+Description: This will add file type icons next to links automatically
 Author: Toby Cox
-Version: 1.0.2
+Version: 1.0.3
 Author URI: http://eagerterrier.co.uk
 */
 
 
 // constants
-define('mtli_version', '1.0.1', true);
+define('mtli_version', '1.0.3', true);
 
 $mtli_options = get_option('mimetype_link_icon_options'); 
 
