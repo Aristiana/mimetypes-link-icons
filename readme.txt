@@ -1,9 +1,9 @@
 === MimeTypes Link Icons ===
 Contributors: eagerterrier
 Donate link: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
-Tags: mime-type, icons, PDF, xls, xlsx, doc, docx, mime, type, mimetype, zip, csv
+Tags: mime-type, icons, PDF, xls, xlsx, doc, docx, mime, type, mimetype, zip, csv, ppt, skp, dwg, dwf, jpg
 Requires at least: 1.5.1.3
-Tested up to: 3.0.1
+Tested up to: 3.0.4
 Stable tag: trunk
 
 Adds icons automatically to any uploads inserted into your blog posts.
@@ -54,6 +54,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 2. Screenshot of plugin in action.
 
 == Changelog ==
+
+= 1.0.4 =
+* Bug fix on the preg_replace replace syntax
 
 = 1.0.3 =
 * Added new file type icons at request of benlikespizza - ppt, skp, dwg, dwf, jpg

@@ -1,20 +1,20 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 1.0.3
+ * @version 1.0.4
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add file type icons next to links automatically
 Author: Toby Cox
-Version: 1.0.3
+Version: 1.0.4
 Author URI: http://eagerterrier.co.uk
 */
 
 
 // constants
-define('mtli_version', '1.0.3', true);
+define('mtli_version', '1.0.4', true);
 
 $mtli_options = get_option('mimetype_link_icon_options'); 
 
@@ -236,14 +236,14 @@ function mimetype_to_icon($content) {
 			
 			if(strpos($content, '.'.$mime_type.'"')!==false){
 				$howmany=0;
-				$content = preg_replace('/href="([^"]+\.'.$mime_type.')"/','href="\1"  class="mtli_attachment mtli_'.$mime_type.'"',$content, -1, $howmany);
+				$content = preg_replace('/href="([^"]+\.'.$mime_type.')"/','href="\\1"  class="mtli_attachment mtli_'.$mime_type.'"',$content, -1, $howmany);
 				if($howmany>0){
 					$add_attachment_style = true;
 					$mtli_css .= '.mtli_'.$mime_type.' { background-image: url('.$wp_content_url.'/plugins/mimetypes-link-icons/images/'.$mime_type.'-icon-'.mtli_get_option('image_size').'x'.mtli_get_option('image_size').'.'.mtli_get_option('image_type').'); }';
 				}
 			} elseif(strpos($content, '.'.$mime_type.'\'')!==false){
 				$howmany=0;
-				$content = preg_replace("/href='([^']+\.".$mime_type.")'/","href='\1'  class='mtli_attachment mtli_".$mime_type."'",$content, -1, $howmany);
+				$content = preg_replace("/href='([^']+\.".$mime_type.")'/","href='\\1'  class='mtli_attachment mtli_".$mime_type."'",$content, -1, $howmany);
 				if($howmany>0){
 					$add_attachment_style = true;
 					$mtli_css .= '.mtli_'.$mime_type.' { background-image: url('.$wp_content_url.'/plugins/mimetypes-link-icons/images/'.$mime_type.'-icon-'.mtli_get_option('image_size').'x'.mtli_get_option('image_size').'.'.mtli_get_option('image_type').'); }';
