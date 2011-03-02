@@ -55,6 +55,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 1.0.5 =
+* Adding optional asynchronous method for users with conflicting plugins (for example the infocus theme's fancy_box)
+
 = 1.0.4 =
 * Bug fix on the preg_replace replace syntax
 

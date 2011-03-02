@@ -1,14 +1,14 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 1.0.4
+ * @version 1.0.5
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add file type icons next to links automatically
 Author: Toby Cox
-Version: 1.0.4
+Version: 1.0.5
 Author URI: http://eagerterrier.co.uk
 */
 
@@ -70,6 +70,7 @@ function mtli_get_option($option_name) {
     $mtli_default_options['enable_dwf']     	    = false;  
     $mtli_default_options['enable_skp']     	    = false;  
     $mtli_default_options['enable_jpg']     	    = false;  
+    $mtli_default_options['enable_async']     	    = false;  
 
     // add default options to the database (if options already exist, 
     // add_option does nothing
@@ -103,6 +104,16 @@ function mtli_admin() {
 
 }
 
+function mtli_get_wp_path(){
+	if ( version_compare( get_bloginfo( 'version' ) , '3.0' , '<' ) && is_ssl() ) {
+		 $wp_content_url = str_replace( 'http://' , 'https://' , get_option( 'siteurl' ) );
+	} else {
+		 $wp_content_url = get_option( 'siteurl' );
+	}
+	$wp_content_url .= '/wp-content';
+	return $wp_content_url;
+}
+
 function mtli_options() {
 	global $mtli_available_sizes;
 	global $mtli_available_image_types;
@@ -128,6 +139,7 @@ function mtli_options() {
 		$mtli_options['enable_dwf']		= ($_POST['enable_dwf']=="true"		? true : false);
 		$mtli_options['enable_skp']		= ($_POST['enable_skp']=="true"		? true : false);
 		$mtli_options['enable_jpg']		= ($_POST['enable_jpg']=="true"		? true : false);
+		$mtli_options['enable_async']	= ($_POST['enable_async']=="true"		? true : false);
 		update_option('mimetype_link_icon_options', $mtli_options);
 
 		_e('Options saved', 'mtli')
@@ -185,6 +197,17 @@ function mtli_options() {
 					<? } ?>
 				</table>
 			</fieldset>
+			<fieldset class="options" name="general">
+				<legend><?php _e('Enable Asynchronous Replacement?', 'mtli') ?></legend>
+				<table width="100%" cellspacing="2" cellpadding="5" class="editform form-table">
+					<tr>
+						<td>Some themes or plugins may conflict with this plugin. If you find you are having trouble, you can switch on asynchronous replacement, which uses JavaScript rather than PHP to find your PHP links.</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="enable_async" id="enable_async" value="true" <?php if (mtli_get_option('enable_async')) echo "checked"; ?> /> </td>
+					</tr>
+				</table>
+			</fieldset>
 			<div class="submit">
 				<input type="submit" name="info_update" value="<?php _e('Update options', 'mtli') ?>" /> 
 			</div>
@@ -223,12 +246,9 @@ function mimetype_to_icon($content) {
 			return false;
 		}
 	}
-	if ( version_compare( get_bloginfo( 'version' ) , '3.0' , '<' ) && is_ssl() ) {
-		 $wp_content_url = str_replace( 'http://' , 'https://' , get_option( 'siteurl' ) );
-	} else {
-		 $wp_content_url = get_option( 'siteurl' );
-	}
-	$wp_content_url .= '/wp-content';
+	
+	$wp_content_url = mtli_get_wp_path();
+	
 	$mtli_css = '';
 	foreach($mtli_available_mime_types as $k=>$mime_type){
 		if(mtli_get_option('enable_'.$mime_type)){
@@ -252,15 +272,54 @@ function mimetype_to_icon($content) {
 		}
 		
 	}
-	if($add_attachment_style === true){
-		$content.="<style type='text/css'> .mtli_attachment {  display:inline-block;  height:".mtli_get_option('image_size')."px;  background-position: top left; background-attachment: scroll; background-repeat: no-repeat; padding-left: ".(mtli_get_option('image_size')*1.2)."px; }".$mtli_css."</style>";
-	}
 	
 	return $content;
 }
 
 // Now we set that function up to execute when the the_content action is called
+
+//add_action('load_template', 'mimetype_to_icon');
+
+
+function mtli_add_jquery(){
+	wp_enqueue_script('jquery');
+}
+
+function mtli_display_css(){
+	global $mtli_available_mime_types;
+	$mtli_css = "<style type='text/css'> .mtli_attachment {  display:inline-block;  height:".mtli_get_option('image_size')."px;  background-position: top left; background-attachment: scroll; background-repeat: no-repeat; padding-left: ".(mtli_get_option('image_size')*1.2)."px; }";
+	$wp_content_url = mtli_get_wp_path();
+	foreach($mtli_available_mime_types as $k=>$mime_type){ 
+		if(mtli_get_option('enable_'.$mime_type)){
+			$mtli_css .= '.mtli_'.$mime_type.' { background-image: url('.$wp_content_url.'/plugins/mimetypes-link-icons/images/'.$mime_type.'-icon-'.mtli_get_option('image_size').'x'.mtli_get_option('image_size').'.'.mtli_get_option('image_type').'); }';
+		}
+	}
+	$mtli_css.="</style>";
+	echo $mtli_css;
+}
+
+function mtli_add_async_replace($content){
+	$wp_content_url = mtli_get_wp_path();
+	$mtli_js_array = 'var mtli_js_array = new Array(';
+	global $mtli_available_mime_types;
+	foreach($mtli_available_mime_types as $k=>$mime_type){ 
+		if(mtli_get_option('enable_'.$mime_type)){
+			$mtli_js_array .= "'".$mime_type."',";
+		}
+	}
+	$mtli_js_array = substr($mtli_js_array,0,-1).');';
+	echo '<script type="text/javascript">'.$mtli_js_array.'</script>';
+	echo '<script type="text/javascript" src="'.$wp_content_url.'/plugins/mimetypes-link-icons/js/mtli_str_replace.js"></script>';
+}
+
+add_action('get_footer', 'mtli_display_css');
+
+if(mtli_get_option('enable_async')){
+	add_action('get_header', 'mtli_add_jquery');
+	add_action('get_footer', 'mtli_add_async_replace');
+} else {
 add_action('the_content', 'mimetype_to_icon');
+}
 
 // Adding Admin CSS
 function mtli_admin_css() {
