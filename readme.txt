@@ -55,6 +55,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 1.0.6 =
+* Turns out some themes don't use get_header OR get_footer. Had to put the hook into the_content instead.
+
 = 1.0.5 =
 * Adding optional asynchronous method for users with conflicting plugins (for example the infocus theme's fancy_box)
 
