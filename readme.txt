@@ -3,7 +3,7 @@ Contributors: eagerterrier
 Donate link: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Tags: mime-type, icons, PDF, xls, xlsx, doc, docx, mime, type, mimetype, zip, csv, ppt, skp, dwg, dwf, jpg
 Requires at least: 1.5.1.3
-Tested up to: 3.0.4
+Tested up to: 3.1.1
 Stable tag: trunk
 
 Adds icons automatically to any uploads inserted into your blog posts.
