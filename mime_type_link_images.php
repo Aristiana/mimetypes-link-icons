@@ -1,20 +1,20 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 1.0.6
+ * @version 1.0.7
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add file type icons next to links automatically
 Author: Toby Cox
-Version: 1.0.6
+Version: 1.0.7
 Author URI: http://eagerterrier.co.uk
 */
 
 
 // constants
-define('mtli_version', '1.0.4', true);
+define('mtli_version', '1.0.7', true);
 
 $mtli_options = get_option('mimetype_link_icon_options'); 
 
@@ -58,6 +58,7 @@ function mtli_get_option($option_name) {
     }
     $mtli_default_options['image_size']             = '48';  
     $mtli_default_options['image_type']     	    = 'gif'; 
+    $mtli_default_options['show_file_size']         = false;
     $mtli_default_options['enable_pdf']     	    = true; 
     $mtli_default_options['enable_doc']     	    = false; 
     $mtli_default_options['enable_docx']     	    = false; 
@@ -127,6 +128,7 @@ function mtli_options() {
 		$mtli_options = get_option('mimetype_link_icon_options');
 		$mtli_options['image_size']		= $_POST['image_size'];
 		$mtli_options['image_type']		= $_POST['image_type'];
+		$mtli_options['show_file_size']	= ($_POST['show_file_size']=="true"	? true : false);
 		$mtli_options['enable_pdf']		= ($_POST['enable_pdf']=="true"		? true : false);
 		$mtli_options['enable_doc']		= ($_POST['enable_doc']=="true"		? true : false);
 		$mtli_options['enable_docx']	= ($_POST['enable_docx']=="true"	? true : false);
@@ -198,6 +200,17 @@ function mtli_options() {
 				</table>
 			</fieldset>
 			<fieldset class="options" name="general">
+				<legend><?php _e('Show file size of attachment?', 'mtli') ?></legend>
+				<table width="100%" cellspacing="2" cellpadding="5" class="editform form-table">
+					<tr>
+						<td>If you want to have the file size of the attachment written in brackets next to the file size, tick this box</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="show_file_size" id="show_file_size" value="true" <?php if (mtli_get_option('show_file_size')) echo "checked"; ?> /> </td>
+					</tr>
+				</table>
+			</fieldset>
+			<fieldset class="options" name="general">
 				<legend><?php _e('Enable Asynchronous Replacement?', 'mtli') ?></legend>
 				<table width="100%" cellspacing="2" cellpadding="5" class="editform form-table">
 					<tr>
@@ -253,17 +266,21 @@ function mimetype_to_icon($content) {
 	foreach($mtli_available_mime_types as $k=>$mime_type){
 		if(mtli_get_option('enable_'.$mime_type)){
 			//if($content = preg_replace('/href="([^"]+\.pdf)"/','href="\1"  class="mtli_attachment mtli_'.$mime_type.'"',$content, -1, $howmany))
-			
+			if(mtli_get_option('show_file_size')===true){
+				$extrabit = ' getfilesize';
+			} else {
+				$extrabit = '';
+			}
 			if(strpos($content, '.'.$mime_type.'"')!==false){
 				$howmany=0;
-				$content = preg_replace('/href="([^"]+\.'.$mime_type.')"/','href="\\1"  class="mtli_attachment mtli_'.$mime_type.'"',$content, -1, $howmany);
+				$content = preg_replace('/href="([^"#]+\.'.$mime_type.')#?[^" ]*"/','href="\\1"  class="mtli_attachment mtli_'.$mime_type.'"',$content, -1, $howmany);
 				if($howmany>0){
 					$add_attachment_style = true;
 					$mtli_css .= '.mtli_'.$mime_type.' { background-image: url('.$wp_content_url.'/plugins/mimetypes-link-icons/images/'.$mime_type.'-icon-'.mtli_get_option('image_size').'x'.mtli_get_option('image_size').'.'.mtli_get_option('image_type').'); }';
 				}
 			} elseif(strpos($content, '.'.$mime_type.'\'')!==false){
 				$howmany=0;
-				$content = preg_replace("/href='([^']+\.".$mime_type.")'/","href='\\1'  class='mtli_attachment mtli_".$mime_type."'",$content, -1, $howmany);
+				$content = preg_replace("/href='([^'#]+\.".$mime_type.")#?[^' ]*'/","href='\\1'  class='mtli_attachment mtli_".$mime_type."'",$content, -1, $howmany);
 				if($howmany>0){
 					$add_attachment_style = true;
 					$mtli_css .= '.mtli_'.$mime_type.' { background-image: url('.$wp_content_url.'/plugins/mimetypes-link-icons/images/'.$mime_type.'-icon-'.mtli_get_option('image_size').'x'.mtli_get_option('image_size').'.'.mtli_get_option('image_type').'); }';
@@ -274,6 +291,16 @@ function mimetype_to_icon($content) {
 	}
 	
 	return $content;
+}
+
+function mtli_get_size($filePath){
+	if(!$filePath){
+		return false;
+	}
+	$internal_domains = mtli_get_option('internal_domains');
+	
+	$fileSize = filesize();
+	return $fileSize;
 }
 
 // Now we set that function up to execute when the the_content action is called

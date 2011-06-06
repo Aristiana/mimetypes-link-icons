@@ -3,7 +3,7 @@ Contributors: eagerterrier
 Donate link: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Tags: mime-type, icons, PDF, xls, xlsx, doc, docx, mime, type, mimetype, zip, csv, ppt, skp, dwg, dwf, jpg
 Requires at least: 1.5.1.3
-Tested up to: 3.1.1
+Tested up to: 3.1.3
 Stable tag: trunk
 
 Adds icons automatically to any uploads inserted into your blog posts.
@@ -55,6 +55,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 1.0.7 =
+* Adding ability for users to use anchor tags in the PDF URL - ie http://example.com/wp-content/uploads/myfile.pdf#page9
+
 = 1.0.6 =
 * Turns out some themes don't use get_header OR get_footer. Had to put the hook into the_content instead.
 
@@ -74,6 +77,24 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 1.0.7 =
+* Adding ability for users to use anchor tags in the PDF URL - ie http://example.com/wp-content/uploads/myfile.pdf#page9
+
+= 1.0.6 =
+* Bug fix
+
+= 1.0.5 =
+* Adding optional asynchronous method for users with conflicting plugins (for example the infocus theme's fancy_box)
+
+= 1.0.4 =
+* Bug fix
+
+= 1.0.3 =
+* Added new file type icons - ppt, skp, dwg, dwf, jpg
+
+= 1.0.2 =
+* Bug fix
 
 = 1.0.1 =
 Typo in CSS caused some images not to show. Recommended for all users
