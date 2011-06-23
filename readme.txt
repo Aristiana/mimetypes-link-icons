@@ -1,7 +1,7 @@
 === MimeTypes Link Icons ===
 Contributors: eagerterrier
 Donate link: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
-Tags: mime-type, icons, PDF, xls, xlsx, doc, docx, mime, type, mimetype, zip, csv, ppt, skp, dwg, dwf, jpg
+Tags: mime-type, icons, PDF, xls, xlsx, doc, docx, mime, type, mimetype, zip, csv, ppt, skp, dwg, dwf, jpg, pptx, 508 compliance
 Requires at least: 1.5.1.3
 Tested up to: 3.1.3
 Stable tag: trunk
@@ -55,6 +55,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 1.0.8 =
+* Adding pptx format
+
 = 1.0.7 =
 * Adding ability for users to use anchor tags in the PDF URL - ie http://example.com/wp-content/uploads/myfile.pdf#page9
 
@@ -77,6 +80,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 1.0.7 =
+* Adding pptx format
 
 = 1.0.7 =
 * Adding ability for users to use anchor tags in the PDF URL - ie http://example.com/wp-content/uploads/myfile.pdf#page9
