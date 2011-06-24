@@ -81,7 +81,7 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Upgrade Notice ==
 
-= 1.0.7 =
+= 1.0.8 =
 * Adding pptx format
 
 = 1.0.7 =
