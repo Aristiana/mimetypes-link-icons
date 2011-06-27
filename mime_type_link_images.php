@@ -346,7 +346,6 @@ function mtli_add_async_replace($content){
 	echo '<script type="text/javascript" src="'.$wp_content_url.'/plugins/mimetypes-link-icons/js/mtli_str_replace.js"></script>';
 }
 
-add_action('the_content', 'mtli_display_css');
 
 if(mtli_get_option('enable_async')){
 	add_action('get_header', 'mtli_add_jquery');
@@ -354,6 +353,9 @@ if(mtli_get_option('enable_async')){
 } else {
 	add_action('the_content', 'mimetype_to_icon');
 }
+
+add_action('the_content', 'mtli_display_css');
+
 if(mtli_get_option('show_file_size')){
 	add_action('get_header', 'mtli_add_jquery');
 }
