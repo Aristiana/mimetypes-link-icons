@@ -22,6 +22,7 @@ Supported Extensions:
 * .xlsx
 * .zip
 * .ppt
+* .pptx
 * .dwg
 * .dwf
 * .skp
@@ -55,6 +56,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 1.0.9 =
+* Minor Bug fix. Preparing for 2.0
+
 = 1.0.8 =
 * Adding pptx format
 
@@ -80,6 +84,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 1.0.9 =
+* Minor Bug fix. Preparing for 2.0
 
 = 1.0.8 =
 * Adding pptx format
