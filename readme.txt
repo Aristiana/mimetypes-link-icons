@@ -56,6 +56,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 1.1.0 =
+* Enhancements
+
 = 1.0.9 =
 * Minor Bug fix. Preparing for 2.0
 
@@ -84,6 +87,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+* Enhancements
 
 = 1.0.9 =
 * Minor Bug fix. Preparing for 2.0
