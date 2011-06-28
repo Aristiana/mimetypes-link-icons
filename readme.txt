@@ -10,7 +10,7 @@ Adds icons automatically to any uploads inserted into your blog posts.
 
 == Description ==
 
-MimeTypes Link Icons is a plugin that looks for uploads in your blogs posts and adds a nice icon next to it.
+MimeTypes Link Icons is a plugin that looks for uploads in your blogs posts and adds a nice icon next to it. Option to add file size next to 
 
 Supported Extensions:
 
@@ -56,6 +56,10 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 2.0.0 =
+
+* Adding option for displaying filesize. Uses :after pseudo element with CSS. Therefore, will not work on IE6.
+
 = 1.1.0 =
 * Enhancements
 
@@ -87,6 +91,10 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.0.0 =
+
+* Adding option for displaying filesize. Uses :after pseudo element with CSS. Therefore, will not work on IE6.
 
 = 1.1.0 =
 * Enhancements
