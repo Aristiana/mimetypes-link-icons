@@ -53,11 +53,15 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 1. Screenshot of the administration screen
 2. Screenshot of plugin in action.
+3. MimeTypes Link Icons adds icons automatically to your inline attachments.
+4. Now you can get mime type link images to add the file size of your attachment, too.
 
 == Changelog ==
 
-= 2.0.0 =
+= 2.0.1 =
+* Fixing bug with asynchronous mode
 
+= 2.0.0 =
 * Adding option for displaying filesize. Uses :after pseudo element with CSS. Therefore, will not work on IE6.
 
 = 1.1.0 =
@@ -92,8 +96,10 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Upgrade Notice ==
 
-= 2.0.0 =
+= 2.0.1 =
+* Fixing bug with asynchronous mode
 
+= 2.0.0 =
 * Adding option for displaying filesize. Uses :after pseudo element with CSS. Therefore, will not work on IE6.
 
 = 1.1.0 =
