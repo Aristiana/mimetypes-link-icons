@@ -1,14 +1,14 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 2.0.1
+ * @version 2.0.2
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add file type icons next to links automatically
 Author: Toby Cox
-Version: 2.0.1
+Version: 2.0.2
 Author URI: http://eagerterrier.co.uk
 */
 
@@ -25,7 +25,7 @@ global $add_attachment_style;
 global $mtli_css;
 global $fileSizeStyles;
 
-$mtli_available_sizes = array(24,48, 64,128);
+$mtli_available_sizes = array(16,24,48, 64,128);
 $mtli_available_image_types = array('gif', 'png');
 $mtli_available_mime_types = array('pdf', 'doc', 'docx', 'xls', 'xlsx', 'csv', 'zip', 'ppt', 'pptx', 'dwg', 'dwf', 'skp', 'jpg');
 

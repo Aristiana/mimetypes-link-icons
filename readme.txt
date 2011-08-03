@@ -3,7 +3,7 @@ Contributors: eagerterrier
 Donate link: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Tags: mime-type, icons, PDF, xls, xlsx, doc, docx, mime, type, mimetype, zip, csv, ppt, skp, dwg, dwf, jpg, pptx, 508 compliance
 Requires at least: 1.5.1.3
-Tested up to: 3.1.3
+Tested up to: 3.2.1
 Stable tag: trunk
 
 Adds icons automatically to any uploads inserted into your blog posts.
@@ -30,6 +30,7 @@ Supported Extensions:
 
 Each icon is configurable. You can choose to display a PNG with transparent background or GIF with white matte. Each icon is available in the following sizes:
 
+* 16x16px
 * 24x24px
 * 48x48px
 * 64x64px
@@ -57,6 +58,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 4. Now you can get mime type link images to add the file size of your attachment, too.
 
 == Changelog ==
+
+= 2.0.2 =
+* Adding smaller 16x16 images at request of user
 
 = 2.0.1 =
 * Fixing bug with asynchronous mode
@@ -95,6 +99,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.0.2 =
+* Adding smaller 16x16 images at request of user
 
 = 2.0.1 =
 * Fixing bug with asynchronous mode
