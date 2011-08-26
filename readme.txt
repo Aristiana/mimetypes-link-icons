@@ -59,6 +59,11 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 2.0.3 =
+* Fixing bug that picked up .xlsx files when only .xls files were selected
+* Fixing bug that caused problems if the user modified the plugin to run off the extract
+* Adding optional field that will skip adding the icon in a parent div of the site owner's choosing
+
 = 2.0.2 =
 * Adding smaller 16x16 images at request of user
 
@@ -99,6 +104,11 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.0.3 =
+* Fixing bug that picked up .xlsx files when only .xls files were selected
+* Fixing bug that caused problems if the user modified the plugin to run off the extract
+* Adding optional field that will skip adding the icon in a parent div of the site owner's choosing
 
 = 2.0.2 =
 * Adding smaller 16x16 images at request of user

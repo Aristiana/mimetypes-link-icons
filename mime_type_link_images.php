@@ -1,20 +1,20 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 2.0.2
+ * @version 2.0.3
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add file type icons next to links automatically
 Author: Toby Cox
-Version: 2.0.2
+Version: 2.0.3
 Author URI: http://eagerterrier.co.uk
 */
 
 
 // constants
-define('mtli_version', '2.0.1', true);
+define('mtli_version', '2.0.3', true);
 
 $mtli_options = get_option('mimetype_link_icon_options'); 
 
@@ -74,6 +74,8 @@ function mtli_get_option($option_name) {
     $mtli_default_options['enable_skp']     	    = false;  
     $mtli_default_options['enable_jpg']     	    = false;  
     $mtli_default_options['enable_async']     	    = false;  
+    $mtli_default_options['enable_hidden_class']    = true;  
+    $mtli_default_options['hidden_classname'] 		= 'wp-caption';  
 
     // add default options to the database (if options already exist, 
     // add_option does nothing
@@ -145,6 +147,8 @@ function mtli_options() {
 		$mtli_options['enable_skp']		= ($_POST['enable_skp']=="true"		? true : false);
 		$mtli_options['enable_jpg']		= ($_POST['enable_jpg']=="true"		? true : false);
 		$mtli_options['enable_async']	= ($_POST['enable_async']=="true"	? true : false);
+		$mtli_options['enable_hidden_class']	= ($_POST['enable_hidden_class']=="true" 	? true : false);
+		$mtli_options['hidden_classname']		= $_POST['hidden_classname'];
 		update_option('mimetype_link_icon_options', $mtli_options);
 
 		_e('Options saved', 'mtli')
@@ -200,6 +204,23 @@ function mtli_options() {
 						</td>
 					</tr>
 					<? } ?>
+				</table>
+			</fieldset>
+			<fieldset class="options" name="general">
+				<legend><?php _e('Enable disabling class name?', 'mtli') ?></legend>
+				<table width="100%" cellspacing="2" cellpadding="5" class="editform form-table">
+					<tr>
+						<td>You may want to have a classname that will disable the mime type links - ie around an image, or caption. If so, tick the box below:</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="enable_hidden_class" id="enable_hidden_class" value="true" <?php if (mtli_get_option('enable_hidden_class')) echo "checked"; ?> /> </td>
+					</tr>
+					<tr>
+						<td>You can change the classname by editing the field below.</td>
+					</tr>
+					<tr>
+						<td><input type="text" name="hidden_classname" id="hidden_classname" value="<?php echo mtli_get_option('hidden_classname');?>" /> </td>
+					</tr>
 				</table>
 			</fieldset>
 			<fieldset class="options" name="general">
@@ -264,7 +285,7 @@ function mimetype_to_icon($content) {
 	}
 	
 	$wp_content_url = mtli_get_wp_path();
-	
+	$add_attachment_style = false;
 	$mtli_css = '';
 	foreach($mtli_available_mime_types as $k=>$mime_type){
 		if(mtli_get_option('enable_'.$mime_type)){
@@ -274,17 +295,17 @@ function mimetype_to_icon($content) {
 			} else {
 				$extrabit = '';
 			}
-			if(preg_match_all('/href="([^"#]+\.'.$mime_type.')#?[^" ]*"/', $content, $matches)!==false){
+			if(preg_match_all('/href="([^"#]+\.'.$mime_type.')(?:#[^" ]+"|")/', $content, $matches)!==false){
 				$howmany=0;
-				$content = preg_replace('/href="([^"#]+\.'.$mime_type.')(#?[^" ]*)"/','href="\\1\\2" class="'.$extrabit.'mtli_attachment mtli_'.$mime_type.'"',$content, -1, $howmany);
+				$content = preg_replace('/href="([^"#]+\.'.$mime_type.')(#[^" ]+"|")/','href="\\1\\2 class="'.$extrabit.'mtli_attachment mtli_'.$mime_type.'"',$content, -1, $howmany);
 				$content = mtli_determine_file_paths($matches, $content);
 				if($howmany>0){
 					$add_attachment_style = true;
 					$mtli_css .= '.mtli_'.$mime_type.' { background-image: url('.$wp_content_url.'/plugins/mimetypes-link-icons/images/'.$mime_type.'-icon-'.mtli_get_option('image_size').'x'.mtli_get_option('image_size').'.'.mtli_get_option('image_type').'); }';
 				}
-			} elseif(preg_match_all("/href='([^'#]+\.".$mime_type.")#?[^' ]*'/",$content, $matches)!==false){
+			} elseif(preg_match_all("/href='([^'#]+\.".$mime_type.")(?:#[^' ]+'|')/",$content, $matches)!==false){
 				$howmany=0;
-				$content = preg_replace("/href='([^'#]+\.".$mime_type.")(#?[^' ]*)'/","href='\\1\\2' class='".$extrabit."mtli_attachment mtli_".$mime_type."'",$content, -1, $howmany);
+				$content = preg_replace("/href='([^'#]+\.".$mime_type.")(#[^' ]+'|')/","href='\\1\\2 class='".$extrabit."mtli_attachment mtli_".$mime_type."'",$content, -1, $howmany);
 				$content = mtli_determine_file_paths($matches, $content);
 				if($howmany>0){
 					$add_attachment_style = true;
@@ -305,7 +326,7 @@ function mtli_determine_file_paths($matches, $content){
 			if($k>0){
 				foreach($match as $key=>$thismatch){
 					if($this_filesize = mtli_get_size($thismatch)){
-						$content = preg_replace('/('.str_replace('/','\/',$thismatch).'#?[^" ]*)" class="mtli_filesize /', '\\1" class="mtli_filesize'.str_replace('.','',$this_filesize).' ', $content);
+						$content = preg_replace('/('.str_replace('/','\/',$thismatch).'(#[^" ]+"|")) class="mtli_filesize /', '\\1 class="mtli_filesize'.str_replace('.','',$this_filesize).' ', $content);
 					}
 				}
 			}
@@ -410,7 +431,21 @@ function mtli_add_async_replace($content){
 	echo '<script type="text/javascript" src="'.$wp_content_url.'/plugins/mimetypes-link-icons/js/mtli_str_replace.js"></script>';
 }
 
+function mtli_add_hidden_class(){
+	echo '<script type="text/javascript">var mtli_hidethings = true; var mtli_avoid="'.mtli_get_option('hidden_classname').'";</script>';
+}
+function mtli_no_hidden_class(){
+	echo '<script type="text/javascript">var mtli_hidethings = false;</script>';
+}
 
+
+if(mtli_get_option('enable_hidden_class')){
+	add_filter('get_footer', 'mtli_add_hidden_class');
+	add_filter('get_header', 'mtli_add_jquery');
+	add_filter('get_footer', 'mtli_add_async_replace');
+} else {
+	add_filter('get_footer', 'mtli_no_hidden_class');
+}
 if(mtli_get_option('enable_async')){
 	add_filter('get_header', 'mtli_add_jquery');
 	add_filter('get_footer', 'mtli_add_async_replace');
