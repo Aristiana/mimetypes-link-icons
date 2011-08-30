@@ -59,6 +59,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 2.0.4 =
+* Shifting the CSS to the head to stop CSS code being truncated and displaying on search results etc in the_excerpt
+
 = 2.0.3 =
 * Fixing bug that picked up .xlsx files when only .xls files were selected
 * Fixing bug that caused problems if the user modified the plugin to run off the extract
@@ -104,6 +107,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.0.4 =
+* Shifting the CSS to the head to stop CSS code being truncated and displaying on search results etc in the_excerpt
 
 = 2.0.3 =
 * Fixing bug that picked up .xlsx files when only .xls files were selected
