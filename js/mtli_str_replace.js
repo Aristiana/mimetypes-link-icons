@@ -1,5 +1,9 @@
 jQuery(document).ready(function($) {
-	content = jQuery('#content').html();
+	if(jQuery('#content').length){
+		content = jQuery('#content').html();
+	} else {
+		content = jQuery('html').html();
+	}
 	replace_content = 0;
 	for(mime_type in mtli_js_array){
 		string_match = new RegExp('href="([^"#]+\\.'+mtli_js_array[mime_type]+')(#[^" ]+"|")','gi');

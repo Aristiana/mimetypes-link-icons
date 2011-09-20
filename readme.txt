@@ -59,6 +59,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 2.0.5 =
+* Fixing an issue that effect asyncronous users only. http://wordpress.org/support/topic/plugin-mimetypes-link-icons-plugin-conflict-or-bug?replies=12#post-2349689
+
 = 2.0.4 =
 * Shifting the CSS to the head to stop CSS code being truncated and displaying on search results etc in the_excerpt
 
@@ -107,6 +110,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.0.5 =
+* Fixing an issue that effect asyncronous users only. http://wordpress.org/support/topic/plugin-mimetypes-link-icons-plugin-conflict-or-bug?replies=12#post-2349689
 
 = 2.0.4 =
 * Shifting the CSS to the head to stop CSS code being truncated and displaying on search results etc in the_excerpt
