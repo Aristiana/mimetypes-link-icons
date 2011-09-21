@@ -59,6 +59,10 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+
+= 2.0.6 =
+* 2.0.5 is not showing in the repository. 2.0.6 is a *bump* for 2.0.5
+
 = 2.0.5 =
 * Fixing an issue that effect asyncronous users only. http://wordpress.org/support/topic/plugin-mimetypes-link-icons-plugin-conflict-or-bug?replies=12#post-2349689
 
@@ -110,6 +114,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.0.6 =
+* 2.0.5 is not showing in the repository. 2.0.6 is a *bump* for 2.0.5
 
 = 2.0.5 =
 * Fixing an issue that effect asyncronous users only. http://wordpress.org/support/topic/plugin-mimetypes-link-icons-plugin-conflict-or-bug?replies=12#post-2349689
