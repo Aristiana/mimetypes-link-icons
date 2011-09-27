@@ -1,20 +1,20 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 2.0.6
+ * @version 2.0.7
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add file type icons next to links automatically
 Author: Toby Cox
-Version: 2.0.6
+Version: 2.0.7
 Author URI: http://eagerterrier.co.uk
 */
 
 
 // constants
-define('mtli_version', '2.0.6', true);
+define('mtli_version', '2.0.7', true);
 
 $mtli_options = get_option('mimetype_link_icon_options'); 
 
@@ -27,7 +27,7 @@ global $fileSizeStyles;
 
 $mtli_available_sizes = array(16,24,48, 64,128);
 $mtli_available_image_types = array('gif', 'png');
-$mtli_available_mime_types = array('pdf', 'doc', 'docx', 'xls', 'xlsx', 'csv', 'zip', 'ppt', 'pptx', 'dwg', 'dwf', 'skp', 'jpg');
+$mtli_available_mime_types = array('pdf', 'doc', 'docx', 'xls', 'xlsx', 'csv', 'zip', 'ppt', 'pptx', 'dwg', 'dwf', 'skp', 'jpg', 'tar', 'txt', 'gif', 'png', 'tgz', 'psd', 'ai', 'indd', 'iso', 'gz', 'dmg', 'bib', 'tex');
 
 
 function mtli_set_option($option_name, $option_value) {
@@ -73,6 +73,20 @@ function mtli_get_option($option_name) {
     $mtli_default_options['enable_dwf']     	    = false;  
     $mtli_default_options['enable_skp']     	    = false;  
     $mtli_default_options['enable_jpg']     	    = false;  
+    $mtli_default_options['enable_gif']     	    = false;  
+    $mtli_default_options['enable_png']     	    = false;  
+    $mtli_default_options['enable_tar']     	    = false;  
+    $mtli_default_options['enable_txt']     	    = false;    
+    $mtli_default_options['enable_png']     	    = false;    
+    $mtli_default_options['enable_tgz']     	    = false;    
+    $mtli_default_options['enable_psd']     	    = false;    
+    $mtli_default_options['enable_ai']     		    = false;    
+    $mtli_default_options['enable_indd']     	    = false;    
+    $mtli_default_options['enable_iso']     	    = false;    
+    $mtli_default_options['enable_gz']     	   		= false;    
+    $mtli_default_options['enable_dmg']     	    = false;    
+    $mtli_default_options['enable_bib']     	    = false;    
+    $mtli_default_options['enable_tex']     	    = false;  
     $mtli_default_options['enable_async']     	    = false;  
     $mtli_default_options['enable_hidden_class']    = true;  
     $mtli_default_options['hidden_classname'] 		= 'wp-caption';  
@@ -123,7 +137,7 @@ function mtli_options() {
 	global $mtli_available_sizes;
 	global $mtli_available_image_types;
 	global $mtli_available_mime_types;
-  
+  	$wp_content_url = mtli_get_wp_path();
 	if (isset($_POST['info_update'])) {
 
 		?><div class="updated"><p><strong><?php 
@@ -146,6 +160,20 @@ function mtli_options() {
 		$mtli_options['enable_dwf']		= ($_POST['enable_dwf']=="true"		? true : false);
 		$mtli_options['enable_skp']		= ($_POST['enable_skp']=="true"		? true : false);
 		$mtli_options['enable_jpg']		= ($_POST['enable_jpg']=="true"		? true : false);
+		$mtli_options['enable_png']		= ($_POST['enable_png']=="true"		? true : false);
+		$mtli_options['enable_txt']		= ($_POST['enable_txt']=="true"		? true : false);
+		$mtli_options['enable_tar']		= ($_POST['enable_tar']=="true"		? true : false);
+		$mtli_options['enable_gif']		= ($_POST['enable_gif']=="true"		? true : false);
+		$mtli_options['enable_png']		= ($_POST['enable_png']=="true"		? true : false);
+		$mtli_options['enable_tgz']		= ($_POST['enable_tgz']=="true"		? true : false);
+		$mtli_options['enable_psd']		= ($_POST['enable_psd']=="true"		? true : false);
+		$mtli_options['enable_ai']		= ($_POST['enable_ai']=="true"		? true : false);
+		$mtli_options['enable_indd']	= ($_POST['enable_indd']=="true"	? true : false);
+		$mtli_options['enable_iso']		= ($_POST['enable_iso']=="true"		? true : false);
+		$mtli_options['enable_gz']		= ($_POST['enable_gz']=="true"		? true : false);
+		$mtli_options['enable_dmg']		= ($_POST['enable_dmg']=="true"		? true : false);
+		$mtli_options['enable_bib']		= ($_POST['enable_bib']=="true"		? true : false);
+		$mtli_options['enable_tex']		= ($_POST['enable_tex']=="true"		? true : false);
 		$mtli_options['enable_async']	= ($_POST['enable_async']=="true"	? true : false);
 		$mtli_options['enable_hidden_class']	= ($_POST['enable_hidden_class']=="true" 	? true : false);
 		$mtli_options['hidden_classname']		= $_POST['hidden_classname'];
@@ -198,6 +226,7 @@ function mtli_options() {
 						<th nowrap valign="top" width="33%">
 							<?php _e('Add images to '.$mime_type.' uploads', 'mtli') ?>
 						</th>
+						<td style="width:24px;"><img src="<?php echo $wp_content_url.'/plugins/mimetypes-link-icons/images/'.$mime_type.'-icon-24x24.png';?>"</td>
 						<td>
 							<input type="checkbox" name="enable_<?php echo $mime_type;?>" id="enable_<?php echo $mime_type;?>" value="true" <?php if (mtli_get_option('enable_'.$mime_type)) echo "checked"; ?> /> 
 							<br />

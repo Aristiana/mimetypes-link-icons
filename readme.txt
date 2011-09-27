@@ -1,7 +1,7 @@
 === MimeTypes Link Icons ===
 Contributors: eagerterrier
 Donate link: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
-Tags: mime-type, icons, PDF, xls, xlsx, doc, docx, mime, type, mimetype, zip, csv, ppt, skp, dwg, dwf, jpg, pptx, 508 compliance
+Tags: mime-type, icons, PDF, xls, xlsx, doc, docx, mime, type, mimetype, zip, csv, ppt, skp, dwg, dwf, jpg, pptx, 508 compliance, jpg, tar, txt, gif, png, tgz, psd, ai, indd, iso, gz, dmg, bib, tex
 Requires at least: 1.5.1.3
 Tested up to: 3.2.1
 Stable tag: trunk
@@ -27,6 +27,21 @@ Supported Extensions:
 * .dwf
 * .skp
 * .jpg
+* .tar
+* .txt
+* .jpg
+* .tar
+* .gif
+* .png
+* .tgz
+* .psd
+* .ai
+* .indd
+* .iso
+* .gz
+* .dmg
+* .bib
+* .tex
 
 Each icon is configurable. You can choose to display a PNG with transparent background or GIF with white matte. Each icon is available in the following sizes:
 
@@ -59,6 +74,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+
+= 2.0.7 =
+* Adding 14 more icon types - jpg, tar, txt, gif, png, tgz, psd, ai, indd, iso, gz, dmg, bib, & tex
 
 = 2.0.6 =
 * 2.0.5 is not showing in the repository. 2.0.6 is a *bump* for 2.0.5
@@ -114,6 +132,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.0.7 =
+* Adding 14 more icon types - jpg, tar, txt, gif, png, tgz, psd, ai, indd, iso, gz, dmg, bib, & tex
 
 = 2.0.6 =
 * 2.0.5 is not showing in the repository. 2.0.6 is a *bump* for 2.0.5
