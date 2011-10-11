@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
 	if(jQuery('#content').length){
 		content = jQuery('#content').html();
 	} else {
-		content = jQuery('html').html();
+		content = jQuery('body').html();
 	}
 	replace_content = 0;
 	for(mime_type in mtli_js_array){
@@ -13,7 +13,11 @@ jQuery(document).ready(function($) {
 		}
 	}
 	if(replace_content==1){
-		jQuery('#content').html(content);
+		if(jQuery('#content').length){
+			jQuery('#content').html(content);
+		} else {
+			jQuery('body').html(content);
+		}
 		if(mtli_hidethings){
 			jQuery('.mtli_attachment').each(function(){
 				if($(this).parents('.'+mtli_avoid).length){

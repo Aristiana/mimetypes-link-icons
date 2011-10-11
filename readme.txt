@@ -75,6 +75,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 == Changelog ==
 
 
+= 2.0.8 =
+* Bug fix for asynchronous users. Bug fix for new icon types
+
 = 2.0.7 =
 * Adding 14 more icon types - jpg, tar, txt, gif, png, tgz, psd, ai, indd, iso, gz, dmg, bib, & tex
 
@@ -132,6 +135,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.0.8 =
+* Bug fix for asynchronous users. Bug fix for new icon types. Recommended for all users.
 
 = 2.0.7 =
 * Adding 14 more icon types - jpg, tar, txt, gif, png, tgz, psd, ai, indd, iso, gz, dmg, bib, & tex
