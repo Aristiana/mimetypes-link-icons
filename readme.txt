@@ -75,6 +75,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 == Changelog ==
 
 
+= 2.0.9 =
+* Bug fix for asynchronous users. 
+
 = 2.0.8 =
 * Bug fix for asynchronous users. Bug fix for new icon types
 
@@ -135,6 +138,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.0.9 =
+* Important bug fix for asynchronous users that fixes DOM scripting clash between plugins. Recommended for all users.
 
 = 2.0.8 =
 * Bug fix for asynchronous users. Bug fix for new icon types. Recommended for all users.
