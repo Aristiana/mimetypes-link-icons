@@ -1,4 +1,5 @@
 jQuery(document).ready(function($) {
+	var content;
 	if(jQuery('#content').length){
 		content = jQuery('#content').html();
 	} else {

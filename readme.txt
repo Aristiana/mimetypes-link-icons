@@ -74,6 +74,8 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 2.0.9b =
+* Bug fix for IE7 users
 
 = 2.0.9 =
 * Bug fix for asynchronous users. 
@@ -138,6 +140,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.0.9b =
+* Bug fix for IE7 users
 
 = 2.0.9 =
 * Important bug fix for asynchronous users that fixes DOM scripting clash between plugins. Recommended for all users.
