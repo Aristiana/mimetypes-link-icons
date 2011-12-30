@@ -1,14 +1,14 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 2.0.9b
+ * @version 2.1.0
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add file type icons next to links automatically
 Author: Toby Cox
-Version: 2.0.9b
+Version: 2.1.0
 Author URI: http://eagerterrier.co.uk
 */
 
@@ -326,7 +326,7 @@ function mimetype_to_icon($content) {
 			}
 			if(preg_match_all('/href="([^"#]+\.'.$mime_type.')(?:#[^" ]+"|")/', $content, $matches)!==false){
 				$howmany=0;
-				$content = preg_replace('/href="([^"#]+\.'.$mime_type.')(#[^" ]+"|")/','href="\\1\\2 class="'.$extrabit.'mtli_attachment mtli_'.$mime_type.'"',$content, -1, $howmany);
+				$content = preg_replace('/href="([^"#]+\.'.$mime_type.')(#[^" ]+"|")/','href="\\1\\2 rel="'.$extrabit.'" class="mtli_attachment mtli_'.$mime_type.'"',$content, -1, $howmany);
 				$content = mtli_determine_file_paths($matches, $content);
 				if($howmany>0){
 					$add_attachment_style = true;
@@ -334,7 +334,7 @@ function mimetype_to_icon($content) {
 				}
 			} elseif(preg_match_all("/href='([^'#]+\.".$mime_type.")(?:#[^' ]+'|')/",$content, $matches)!==false){
 				$howmany=0;
-				$content = preg_replace("/href='([^'#]+\.".$mime_type.")(#[^' ]+'|')/","href='\\1\\2 class='".$extrabit."mtli_attachment mtli_".$mime_type."'",$content, -1, $howmany);
+				$content = preg_replace("/href='([^'#]+\.".$mime_type.")(#[^' ]+'|')/","href='\\1\\2 rel='".$extrabit."' class='mtli_attachment mtli_".$mime_type."'",$content, -1, $howmany);
 				$content = mtli_determine_file_paths($matches, $content);
 				if($howmany>0){
 					$add_attachment_style = true;
@@ -355,7 +355,7 @@ function mtli_determine_file_paths($matches, $content){
 			if($k>0){
 				foreach($match as $key=>$thismatch){
 					if($this_filesize = mtli_get_size($thismatch)){
-						$content = preg_replace('/('.str_replace('/','\/',$thismatch).'(#[^" ]+"|")) class="mtli_filesize /', '\\1 class="mtli_filesize'.str_replace('.','',$this_filesize).' ', $content);
+						$content = preg_replace('/('.str_replace('/','\/',$thismatch).'(#[^" ]+"|")) rel="mtli_filesize /', '\\1 rel="mtli_filesize'.str_replace('.','',$this_filesize).' ', $content);
 					}
 				}
 			}
@@ -373,11 +373,14 @@ function mtli_get_size($filePath){
 		$fileSize = mtli_get_external_filesize($filePath);
 	} else {
 		$uploads = wp_upload_dir();
+		$filePath = explode('#',$filePath);
+		$filePath = explode('?',$filePath[0]);
+		$filePath = $filePath[0];
 		$filePath = str_replace($uploads['baseurl'],$uploads['basedir'], $filePath);
 		$fileSize = filesize($filePath);
 	}
 	$fileSize = mtli_return_nice_size($fileSize);
-	$fileSizeStyles .= '.mtli_filesize'.str_replace('.','',$fileSize).':after {content:" ('.$fileSize.')"}';
+	$fileSizeStyles .= 'a[rel~="mtli_filesize'.str_replace('.','',$fileSize).'"]:after {content:" ('.$fileSize.')"}';
 	return $fileSize;
 }
 
@@ -446,6 +449,14 @@ function mtli_display_css($content){
 	}
 }
 
+function mtli_show_file_size_css($content){
+	global $fileSizeStyles;
+	if($fileSizeStyles){
+		$mtli_css = "<style type='text/css'>".$fileSizeStyles."</style>";
+	}
+	return $content.$mtli_css;
+}
+
 function mtli_add_async_replace($content){
 	$wp_content_url = mtli_get_wp_path();
 	$mtli_js_array = 'var mtli_js_array = new Array(';
@@ -492,6 +503,7 @@ add_filter('get_header','mtli_add_css_to_head');
 
 if(mtli_get_option('show_file_size')){
 	add_filter('get_header', 'mtli_add_jquery');
+	add_filter('the_content','mtli_show_file_size_css');
 }
 
 // Adding Admin CSS

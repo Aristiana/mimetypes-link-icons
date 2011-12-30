@@ -74,6 +74,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 2.1.0 =
+* File size was being overwritten by JS. Fixed.
+
 = 2.0.9b =
 * Bug fix for IE7 users
 
@@ -140,6 +143,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.1.0 =
+* File size was being overwritten by JS. Fixed. Please be aware that file size cannot work with asychronous loading type.
 
 = 2.0.9b =
 * Bug fix for IE7 users

@@ -1,5 +1,7 @@
 jQuery(document).ready(function($) {
 	var content;
+	var replace_content;
+	var string_match;
 	if(jQuery('#content').length){
 		content = jQuery('#content').html();
 	} else {
