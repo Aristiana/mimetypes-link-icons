@@ -1,7 +1,7 @@
 === MimeTypes Link Icons ===
 Contributors: eagerterrier
 Donate link: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
-Tags: mime-type, icons, PDF, xls, xlsx, doc, docx, mime, type, mimetype, zip, csv, ppt, skp, dwg, dwf, jpg, pptx, 508 compliance, jpg, tar, txt, gif, png, tgz, psd, ai, indd, iso, gz, dmg, bib, tex
+Tags: mime-type, icons, PDF, xls, xlsx, doc, docx, mime, type, mimetype, zip, csv, ppt, skp, dwg, dwf, jpg, pptx, 508 compliance, jpg, tar, txt, gif, png, tgz, psd, ai, indd, iso, gz, dmg, bib, tex, mp4, m4v, wmv, mov, ram, rm, ra, rv, rpm, asf, mpg, vob, mpeg, log
 Requires at least: 1.5.1.3
 Tested up to: 3.2.1
 Stable tag: trunk
@@ -42,6 +42,21 @@ Supported Extensions:
 * .dmg
 * .bib
 * .tex
+* .mp4
+* .m4v
+* .wmv
+* .mov
+* .ram
+* .rm
+* .ra
+* .rv
+* .rpm
+* .asf
+* .mpg
+* .vob
+* .mpeg
+* .log
+
 
 Each icon is configurable. You can choose to display a PNG with transparent background or GIF with white matte. Each icon is available in the following sizes:
 
@@ -73,6 +88,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 4. Now you can get mime type link images to add the file size of your attachment, too.
 
 == Changelog ==
+
+= 2.1.0 =
+* Adding 14 new mime types (mostly images)
 
 = 2.1.0 =
 * File size was being overwritten by JS. Fixed.
@@ -143,6 +161,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.1.0 =
+* Adding 14 new mime types (mostly images)
 
 = 2.1.0 =
 * File size was being overwritten by JS. Fixed. Please be aware that file size cannot work with asychronous loading type.
