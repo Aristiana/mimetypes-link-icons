@@ -92,6 +92,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 2.1.3 =
+* Removing a couple of short php open tags
+
 = 2.1.2 =
 * Adding 3 new mime types (openoffice)
 
@@ -167,6 +170,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.1.3 =
+* Removing a couple of short php open tags
 
 = 2.1.2 =
 * Adding 3 new mime types (openoffice)

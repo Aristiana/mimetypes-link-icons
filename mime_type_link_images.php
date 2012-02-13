@@ -1,20 +1,20 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 2.1.2
+ * @version 2.1.3
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add file type icons next to links automatically
 Author: Toby Cox
-Version: 2.1.2
+Version: 2.1.3
 Author URI: http://eagerterrier.co.uk
 */
 
 
 // constants
-define('mtli_version', '2.1.2', true);
+define('mtli_version', '2.1.3', true);
 
 $mtli_options = get_option('mimetype_link_icon_options'); 
 
@@ -231,7 +231,7 @@ function mtli_options() {
 						</th>
 						<td>
 							<select name="image_size" id="image_size"> 
-								<? foreach($mtli_available_sizes as $k=> $v){ ?>
+								<?php foreach($mtli_available_sizes as $k=> $v){ ?>
 									<option value="<?php echo $v; ?>" <?php if(mtli_get_option('image_size')==$v) echo ' selected'; ?>><?php echo $v."x".$v; ?></option>
 								<? } ?>
 							</select>
@@ -244,9 +244,9 @@ function mtli_options() {
 						</th>
 						<td>
 							<select name="image_type" id="image_type"> 
-								<? foreach($mtli_available_image_types as $k=>$v){ ?>
+								<?php foreach($mtli_available_image_types as $k=>$v){ ?>
 									<option value="<?php echo $v;?>" <?php if($v==mtli_get_option('image_type')) echo ' selected';?>><?php echo $v;?></option>
-								<? } ?>
+								<?php } ?>
 							</select>
 						</td>
 					</tr>
@@ -255,7 +255,7 @@ function mtli_options() {
 			<fieldset class="options" name="general">
 				<legend><?php _e('Image settings', 'mtli') ?></legend>
 				<table width="100%" cellspacing="2" cellpadding="5" class="editform form-table">
-					<? foreach($mtli_available_mime_types as $k=>$mime_type){ ?> 
+					<?php foreach($mtli_available_mime_types as $k=>$mime_type){ ?> 
 					<tr>
 						<th nowrap valign="top" width="33%">
 							<?php _e('Add images to '.$mime_type.' uploads', 'mtli') ?>
@@ -266,7 +266,7 @@ function mtli_options() {
 							<br />
 						</td>
 					</tr>
-					<? } ?>
+					<?php } ?>
 				</table>
 			</fieldset>
 			<fieldset class="options" name="general">
