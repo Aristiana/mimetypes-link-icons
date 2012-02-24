@@ -1,20 +1,20 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 2.1.4
+ * @version 2.1.5
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add file type icons next to links automatically
 Author: Toby Cox
-Version: 2.1.4
+Version: 2.1.5
 Author URI: http://eagerterrier.co.uk
 */
 
 
 // constants
-define('mtli_version', '2.1.4', true);
+define('mtli_version', '2.1.5', true);
 
 $mtli_options = get_option('mimetype_link_icon_options'); 
 
@@ -27,7 +27,7 @@ global $fileSizeStyles;
 
 $mtli_available_sizes = array(16,24,48, 64,128);
 $mtli_available_image_types = array('gif', 'png');
-$mtli_available_mime_types = array('pdf', 'doc', 'docx', 'xls', 'xlsx', 'csv', 'zip', 'ppt', 'pptx', 'dwg', 'dwf', 'skp', 'jpg', 'tar', 'txt', 'gif', 'png', 'tgz', 'psd', 'ai', 'indd', 'iso', 'gz', 'dmg', 'bib', 'tex','mp4','m4v','wmv','mov','ram','rm','ra','rv','rpm','asf','mpg','vob','mpeg','log','ods','odt','odp');
+$mtli_available_mime_types = array('pdf', 'doc', 'docx', 'xls', 'xlsx', 'csv', 'zip', 'ppt', 'pptx', 'dwg', 'dwf', 'skp', 'jpg', 'tar', 'txt', 'gif', 'png', 'tgz', 'psd', 'ai', 'indd', 'iso', 'gz', 'dmg', 'bib', 'tex','mp4','m4v','wmv','mov','ram','rm','ra','rv','rpm','asf','mpg','vob','mpeg','log','ods','odt','odp','djvu');
 
 
 function mtli_set_option($option_name, $option_value) {
@@ -104,6 +104,7 @@ function mtli_get_option($option_name) {
     $mtli_default_options['enable_ods']     	    = false;  
     $mtli_default_options['enable_odt']     	    = false;  
     $mtli_default_options['enable_odp']     	    = false;  
+    $mtli_default_options['enable_djvu']     	    = false;  
     $mtli_default_options['enable_async']     	    = false;  
     $mtli_default_options['enable_hidden_class']    = true;  
     $mtli_default_options['hidden_classname'] 		= 'wp-caption';  
@@ -203,11 +204,12 @@ function mtli_options() {
 		$mtli_options['enable_asf'] 	= ($_POST['enable_asf']=="true"		? true : false);
 		$mtli_options['enable_mpg'] 	= ($_POST['enable_mpg']=="true"		? true : false);
 		$mtli_options['enable_vob'] 	= ($_POST['enable_vob']=="true"		? true : false);
-		$mtli_options['enable_mpeg']	= ($_POST['enable_mpeg']=="true"		? true : false);
+		$mtli_options['enable_mpeg']	= ($_POST['enable_mpeg']=="true"	? true : false);
 		$mtli_options['enable_log'] 	= ($_POST['enable_log']=="true"		? true : false);
 		$mtli_options['enable_ods'] 	= ($_POST['enable_ods']=="true"		? true : false);
 		$mtli_options['enable_odt'] 	= ($_POST['enable_odt']=="true"		? true : false);
 		$mtli_options['enable_odp'] 	= ($_POST['enable_odp']=="true"		? true : false);
+		$mtli_options['enable_djvu'] 	= ($_POST['enable_djvu']=="true"	? true : false);
 		$mtli_options['enable_async']	= ($_POST['enable_async']=="true"	? true : false);
 		$mtli_options['enable_hidden_class']	= ($_POST['enable_hidden_class']=="true" 	? true : false);
 		$mtli_options['hidden_classname']		= $_POST['hidden_classname'];

@@ -23,7 +23,7 @@
 		}
 		if(mtli_hidethings){
 			jQuery('.mtli_attachment').each(function(){
-				if(jQuery(this).parents('.'+mtli_avoid).length || jQuery(this).('.'+mtli_avoid).length){
+				if((jQuery(this).parents('.'+mtli_avoid).length) || (jQuery(this).hasClass(mtli_avoid))){
 					jQuery(this).removeClass('mtli_attachment').css('background-image','none');
 				}
 			});
