@@ -92,6 +92,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 2.1.4 =
+* Some bug fixes and plugin conflict fixes. The exlude class name can now be used on parents and the link itself
+
 = 2.1.3 =
 * Removing a couple of short php open tags
 
@@ -170,6 +173,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.1.4 =
+* Some bug fixes and plugin conflict fixes. The exlude class name can now be used on parents and the link itself
 
 = 2.1.3 =
 * Removing a couple of short php open tags

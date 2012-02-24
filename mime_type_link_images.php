@@ -1,20 +1,20 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 2.1.3
+ * @version 2.1.4
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add file type icons next to links automatically
 Author: Toby Cox
-Version: 2.1.3
+Version: 2.1.4
 Author URI: http://eagerterrier.co.uk
 */
 
 
 // constants
-define('mtli_version', '2.1.3', true);
+define('mtli_version', '2.1.4', true);
 
 $mtli_options = get_option('mimetype_link_icon_options'); 
 
@@ -233,7 +233,7 @@ function mtli_options() {
 							<select name="image_size" id="image_size"> 
 								<?php foreach($mtli_available_sizes as $k=> $v){ ?>
 									<option value="<?php echo $v; ?>" <?php if(mtli_get_option('image_size')==$v) echo ' selected'; ?>><?php echo $v."x".$v; ?></option>
-								<? } ?>
+								<?php } ?>
 							</select>
 							<br />
 						</td>

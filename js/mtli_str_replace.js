@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+
 	var content;
 	var replace_content;
 	var string_match;
@@ -23,11 +23,10 @@ jQuery(document).ready(function($) {
 		}
 		if(mtli_hidethings){
 			jQuery('.mtli_attachment').each(function(){
-				if($(this).parents('.'+mtli_avoid).length){
-					$(this).removeClass('mtli_attachment').css('background-image','none');
+				if(jQuery(this).parents('.'+mtli_avoid).length || jQuery(this).('.'+mtli_avoid).length){
+					jQuery(this).removeClass('mtli_attachment').css('background-image','none');
 				}
 			});
 		}
 	}
 	
-});
