@@ -1,7 +1,7 @@
 === MimeTypes Link Icons ===
 Contributors: eagerterrier
 Donate link: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
-Tags: mime-type, icons, PDF, xls, xlsx, doc, docx, mime, type, mimetype, zip, csv, ppt, skp, dwg, dwf, jpg, pptx, 508 compliance, jpg, tar, txt, gif, png, tgz, psd, ai, indd, iso, gz, dmg, bib, tex, mp4, m4v, wmv, mov, ram, rm, ra, rv, rpm, asf, mpg, vob, mpeg, log, ods, odt, odp, djvu
+Tags: mime-type, icons, ai, asf, bib, csv, deb, doc, docx, djvu, dmg, dwg, dwf, flac, gif, gz, indd, iso, jpg, log, m4v, midi, mkv, mov, mp3, mp4, mpeg, mpg, odp, ods, odt, oga, ogg, ogv, pdf, png, ppt, pptx, psd, ra, ram, rm, rpm, rv, skp, spx, tar, tex, tgz, txt, vob, wmv, xls, xlsx, xml, xpi, zip.
 Requires at least: 1.5.1.3
 Tested up to: 3.3.1
 Stable tag: trunk
@@ -10,55 +10,65 @@ Adds icons automatically to any uploads inserted into your blog posts.
 
 == Description ==
 
-MimeTypes Link Icons is a plugin that looks for uploads in your blogs posts and adds a nice icon next to it. Option to add file size next to 
+MimeTypes Link Icons is a plugin that looks for uploads in your blogs posts and adds a nice icon next to it. Option to add file size next to item.
 
 Supported Extensions:
 
+* .ai
+* .asf
+* .bib
 * .csv
+* .deb
 * .doc
 * .docx
-* .pdf
-* .xls
-* .xlsx
-* .zip
-* .ppt
-* .pptx
+* .djvu
+* .dmg
 * .dwg
 * .dwf
-* .skp
-* .jpg
-* .tar
-* .txt
-* .jpg
-* .tar
+* .flac
 * .gif
-* .png
-* .tgz
-* .psd
-* .ai
+* .gz
 * .indd
 * .iso
-* .gz
-* .dmg
-* .bib
-* .tex
-* .mp4
+* .jpg
+* .log
 * .m4v
-* .wmv
+* .midi
+* .mkv
 * .mov
+* .mp3
+* .mp4
+* .mpeg
+* .mpg
+* .odp
+* .ods
+* .odt
+* .oga
+* .ogg
+* .ogv
+* .pdf
+* .png
+* .ppt
+* .pptx
+* .psd
+* .ra
 * .ram
 * .rm
-* .ra
-* .rv
 * .rpm
-* .asf
-* .mpg
+* .rv
+* .skp
+* .spx
+* .tar
+* .tex
+* .tgz
+* .txt
 * .vob
-* .mpeg
-* .log
-* .odp
-* .odt
-* .ods
+* .wmv
+* .xls
+* .xlsx
+* .xml
+* .xpi
+* .zip
 
 
 Each icon is configurable. You can choose to display a PNG with transparent background or GIF with white matte. Each icon is available in the following sizes:
@@ -91,6 +101,15 @@ No. It searches your post for any links containing the mimetype extensions you h
 4. Now you can get mime type link images to add the file size of your attachment, too.
 
 == Changelog ==
+
+= 2.1.6 =
+* Added eleven new mime types: deb, flac, midi, mkv, mp3, oga, ogg, ogv, spx, xml, xpi.
+* New option to have icon display on left or right (defaults to left)
+* Alphabetized file types
+* Changed default image size to "16" (better default because it is closer to text size and does not overwhelm the page with large icons)
+* Changed default image type to "png" (better image)
+* Reworded text and streamlined display format for Enable/Disable classname override, Show File Size, and Asynchronous Replacement.
+* Removed duplicate "png" option from options/default options array
 
 = 2.1.5 =
 * Adding DJVU icon
@@ -177,6 +196,11 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.1.6 =
+* Adding 11 new mime types
+* New option to have icon display on left or right (defaults to left)
+* Other front end changes
 
 = 2.1.5 =
 * Adding DJVU icon
