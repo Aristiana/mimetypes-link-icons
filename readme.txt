@@ -102,6 +102,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 2.1.7 =
+Fixed an IE8 bug found by @quartney
+
 = 2.1.6 =
 * Added eleven new mime types: deb, flac, midi, mkv, mp3, oga, ogg, ogv, spx, xml, xpi.
 * New option to have icon display on left or right (defaults to left)
@@ -196,6 +199,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.1.7 =
+* Fixed an IE8 bug found by @quartney. Recommended to all users.
 
 = 2.1.6 =
 * Adding 11 new mime types
