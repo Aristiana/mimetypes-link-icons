@@ -102,6 +102,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 2.1.9 =
+Changes were made by mistake in v 2.1.8 that weren't completed.
+
 = 2.1.8 =
 Fixed a typo found by @pdecaux
 
@@ -202,6 +205,9 @@ Fixed an IE8 bug found by @quartney
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.1.9 =
+Changes were made by mistake in v 2.1.8 that weren't completed.  Recommended to all users. Apologies for anyone who upgraded today and got 2.1.8...
 
 = 2.1.8 =
 Fixed a typo found by @pdecaux. Recommended to users of the filesize option.
