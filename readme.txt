@@ -102,6 +102,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 2.2.0 =
+Fix for some users who had issues with $_GET vars on style.php
+
 = 2.1.9 =
 Changes were made by mistake in v 2.1.8 that weren't completed.
 
@@ -205,6 +208,9 @@ Fixed an IE8 bug found by @quartney
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.2.0 =
+Fix for some users who had issues with $_GET vars on style.php
 
 = 2.1.9 =
 Changes were made by mistake in v 2.1.8 that weren't completed.  Recommended to all users. Apologies for anyone who upgraded today and got 2.1.8...

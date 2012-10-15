@@ -1,14 +1,14 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 2.1.9
+ * @version 2.2.0
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add file type icons next to links automatically
 Author: Toby Cox
-Version: 2.1.9
+Version: 2.2.0
 Author URI: http://eagerterrier.co.uk
 Contributor: Keith Parker
 Cuntributor URI: http://infas.net
@@ -16,7 +16,7 @@ Cuntributor URI: http://infas.net
 
 
 // constants
-define('mtli_version', '2.1.9', true);
+define('mtli_version', '2.2.0', true);
 
 $mtli_options = get_option('mimetype_link_icon_options'); 
 
@@ -550,7 +550,7 @@ function mtli_no_hidden_class(){
 }
 function mtli_add_css_to_head(){
 	$wp_content_url = mtli_get_wp_path();
-	wp_register_style('mtli_css_head',$wp_content_url.'/plugins/mimetypes-link-icons/css/style.php?mtli_height='.mtli_get_option('image_size').'&mtli_image_type='.mtli_get_option('image_type').'&mtli_leftorright='.mtli_get_option('leftorright'));
+	wp_register_style('mtli_css_head',$wp_content_url.'/plugins/mimetypes-link-icons/css/style.php?cssvars='.base64_encode('mtli_height='.mtli_get_option('image_size').'&mtli_image_type='.mtli_get_option('image_type').'&mtli_leftorright='.mtli_get_option('leftorright')));
 	wp_enqueue_style('mtli_css_head');
 }
 
