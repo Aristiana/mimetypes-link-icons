@@ -1,14 +1,14 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 2.1.7
+ * @version 2.1.8
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add file type icons next to links automatically
 Author: Toby Cox
-Version: 2.1.7
+Version: 2.1.8
 Author URI: http://eagerterrier.co.uk
 Contributor: Keith Parker
 Cuntributor URI: http://infas.net
@@ -16,7 +16,7 @@ Cuntributor URI: http://infas.net
 
 
 // constants
-define('mtli_version', '2.1.7', true);
+define('mtli_version', '2.1.8', true);
 
 $mtli_options = get_option('mimetype_link_icon_options'); 
 
@@ -483,7 +483,7 @@ function mtli_return_nice_size($bytes){
 		return $bytes.'b';
 	} elseif($bytes<1048576){
 		return number_format(($bytes/1024),2).'Kb';
-	} elseif($byes<1073741824){
+	} elseif($bytes<1073741824){
 		return number_format(($bytes/1048576),2).'Mb';
 	} else {
 		return number_format(($bytes/1073741824),2).'Gb';
@@ -550,7 +550,7 @@ function mtli_no_hidden_class(){
 }
 function mtli_add_css_to_head(){
 	$wp_content_url = mtli_get_wp_path();
-	wp_register_style('mtli_css_head',$wp_content_url.'/plugins/mimetypes-link-icons/css/style.php?mtli_height='.mtli_get_option('image_size').'&mtli_image_type='.mtli_get_option('image_type').'&mtli_leftorright='.mtli_get_option('leftorright'));
+	wp_register_style('mtli_css_head',$wp_content_url.'/plugins/mimetypes-link-icons/css/style.php', array(), 3);
 	wp_enqueue_style('mtli_css_head');
 }
 
@@ -560,6 +560,7 @@ if(mtli_get_option('enable_hidden_class')){
 	add_filter('get_footer', 'mtli_add_hidden_class');
 	add_filter('get_header', 'mtli_add_jquery');
 	add_filter('get_footer', 'mtli_add_async_replace');
+	
 } else {
 	add_filter('get_footer', 'mtli_no_hidden_class');
 }
