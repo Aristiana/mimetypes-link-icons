@@ -1,5 +1,5 @@
 === MimeTypes Link Icons ===
-Contributors: eagerterrier
+Contributors: eagerterrier, jrf
 Donate link: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Tags: mime-type, icons, ai, asf, bib, csv, deb, doc, docx, djvu, dmg, dwg, dwf, flac, gif, gz, indd, iso, jpg, log, m4v, midi, mkv, mov, mp3, mp4, mpeg, mpg, odp, ods, odt, oga, ogg, ogv, pdf, png, ppt, pptx, psd, ra, ram, rm, rpm, rv, skp, spx, tar, tex, tgz, txt, vob, wmv, xls, xlsx, xml, xpi, zip.
 Requires at least: 1.5.1.3
@@ -101,6 +101,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 4. Now you can get mime type link images to add the file size of your attachment, too.
 
 == Changelog ==
+
+= 2.2.2 =
+Fixes suggested by @jrf
 
 = 2.2.1 =
 Admin CSS fix for some users
@@ -211,6 +214,9 @@ Fixed an IE8 bug found by @quartney
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.2.2 =
+Fixes suggested by @jrf
 
 = 2.2.1 =
 Admin CSS fix for some users, having direct link to settings from plugins page. Cosmetic fix. Non-essential upgrade.

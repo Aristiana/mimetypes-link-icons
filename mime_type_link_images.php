@@ -1,22 +1,22 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 2.2.1
+ * @version 2.2.2
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add file type icons next to links automatically. Change options in the <a href="options-general.php?page=mime_type_link_images.php">settings page</a>
 Author: Toby Cox
-Version: 2.2.1
+Version: 2.2.2
 Author URI: http://eagerterrier.co.uk
 Contributor: Keith Parker
-Cuntributor URI: http://infas.net
+Contributor URI: http://infas.net
 */
 
 
 // constants
-define('mtli_version', '2.2.1', true);
+define('mtli_version', '2.2.2', true);
 
 $mtli_options = get_option('mimetype_link_icon_options'); 
 
@@ -30,7 +30,7 @@ global $fileSizeStyles;
 $mtli_available_sizes = array(16,24,48,64,128);
 $mtli_available_image_types = array('gif','png');
 $mtli_available_mime_types = array('ai','asf','bib','csv','deb','doc','docx','djvu','dmg','dwg','dwf','flac','gif','gz','indd','iso','jpg','log','m4v','midi','mkv','mov','mp3','mp4','mpeg','mpg','odp','ods','odt','oga','ogg','ogv','pdf','png','ppt','pptx','psd','ra','ram','rm','rpm','rv','skp','spx','tar','tex','tgz','txt','vob','wmv','xls','xlsx','xml','xpi','zip');
-
+$mtli_default_true = array('pdf');
 
 function mtli_set_option($option_name, $option_value) {
 	// first get the existing options in the database
@@ -59,66 +59,10 @@ function mtli_get_option($option_name) {
     if (preg_match('@www\.(.*)@i', $mtli_default_options['internal_domains'], $parts)>=1) {
       $mtli_default_options['internal_domains'] .= ','.$parts[1];
     }
-    $mtli_default_options['image_size']             = '16';  
-    $mtli_default_options['image_type']     	    = 'png'; 
-    $mtli_default_options['leftorright']     	    = 'left'; 
-    $mtli_default_options['show_file_size']         = false;
-    $mtli_default_options['enable_ai']     		    = false;    
-    $mtli_default_options['enable_asf']     	    = false;  
-    $mtli_default_options['enable_bib']     	    = false;    
-    $mtli_default_options['enable_csv']     	    = false;  
-    $mtli_default_options['enable_deb']     	    = false;    
-    $mtli_default_options['enable_djvu']     	    = false;  
-    $mtli_default_options['enable_dmg']     	    = false;    
-    $mtli_default_options['enable_doc']     	    = false; 
-    $mtli_default_options['enable_docx']     	    = false; 
-    $mtli_default_options['enable_dwg']     	    = false;  
-    $mtli_default_options['enable_dwf']     	    = false;  
-    $mtli_default_options['enable_flac']     	    = false;    
-    $mtli_default_options['enable_gif']     	    = false;  
-    $mtli_default_options['enable_gz']     	   		= false;    
-    $mtli_default_options['enable_indd']     	    = false;    
-    $mtli_default_options['enable_iso']     	    = false;    
-    $mtli_default_options['enable_jpg']     	    = false;  
-    $mtli_default_options['enable_log']     	    = false;  
-    $mtli_default_options['enable_m4v']     	    = false;  
-    $mtli_default_options['enable_midi']     	    = false;    
-    $mtli_default_options['enable_mkv']     	    = false;  
-    $mtli_default_options['enable_mov']     	    = false;  
-    $mtli_default_options['enable_mp3']     	    = false;    
-    $mtli_default_options['enable_mp4']     	    = false;  
-    $mtli_default_options['enable_mpeg']     	    = false;  
-    $mtli_default_options['enable_mpg']     	    = false;  
-    $mtli_default_options['enable_odp']     	    = false;  
-    $mtli_default_options['enable_ods']     	    = false;  
-    $mtli_default_options['enable_odt']     	    = false;  
-    $mtli_default_options['enable_oga']     	    = false;    
-    $mtli_default_options['enable_ogg']     	    = false;    
-    $mtli_default_options['enable_ogv']     	    = false;    
-    $mtli_default_options['enable_pdf']     	    = true; 
-    $mtli_default_options['enable_png']     	    = false;  
-    $mtli_default_options['enable_ppt']     	    = false;  
-    $mtli_default_options['enable_pptx']     	    = false;  
-    $mtli_default_options['enable_psd']     	    = false;    
-    $mtli_default_options['enable_ra']	     	    = false;  
-    $mtli_default_options['enable_ram']     	    = false;  
-    $mtli_default_options['enable_rm']   	  	    = false;  
-    $mtli_default_options['enable_rpm']     	    = false;  
-    $mtli_default_options['enable_rv']	     	    = false;  
-    $mtli_default_options['enable_skp']     	    = false;  
-    $mtli_default_options['enable_spx']     	    = false;    
-    $mtli_default_options['enable_tar']     	    = false;  
-    $mtli_default_options['enable_tex']     	    = false;  
-    $mtli_default_options['enable_tgz']     	    = false;    
-    $mtli_default_options['enable_txt']     	    = false;    
-    $mtli_default_options['enable_vob']     	    = false;  
-    $mtli_default_options['enable_wmv']     	    = false;  
-    $mtli_default_options['enable_xls']     	    = false; 
-    $mtli_default_options['enable_xlsx']     	    = false; 
-    $mtli_default_options['enable_xml']     	    = false;    
-    $mtli_default_options['enable_xpi']     	    = false;  
-    $mtli_default_options['enable_zip']     	    = false;  
-    $mtli_default_options['enable_async']     	    = false;  
+    global $mtli_available_mime_types, $mtli_default_true;
+    foreach( $mtli_available_mime_types as $type ) {
+		$mtli_default_options['enable_' . $type]	= ( in_array( $type, $mtli_default_true ) === false ? false : true );
+	}
     $mtli_default_options['enable_hidden_class']    = true;  
     $mtli_default_options['hidden_classname'] 		= 'wp-caption';  
 
@@ -180,64 +124,25 @@ function mtli_options() {
 		$mtli_options['image_type']		= $_POST['image_type'];
 		$mtli_options['leftorright']	= $_POST['leftorright'];
 		$mtli_options['show_file_size']	= ($_POST['show_file_size']=="true"	? true : false);
-		$mtli_options['enable_ai']		= ($_POST['enable_ai']=="true"		? true : false);
-		$mtli_options['enable_asf'] 	= ($_POST['enable_asf']=="true"		? true : false);
-		$mtli_options['enable_bib']		= ($_POST['enable_bib']=="true"		? true : false);
-		$mtli_options['enable_csv']		= ($_POST['enable_csv']=="true"		? true : false);
-		$mtli_options['enable_deb']		= ($_POST['enable_deb']=="true"		? true : false);
-		$mtli_options['enable_djvu'] 	= ($_POST['enable_djvu']=="true"	? true : false);
-		$mtli_options['enable_dmg']		= ($_POST['enable_dmg']=="true"		? true : false);
-		$mtli_options['enable_doc']		= ($_POST['enable_doc']=="true"		? true : false);
-		$mtli_options['enable_docx']	= ($_POST['enable_docx']=="true"	? true : false);
-		$mtli_options['enable_dwf']		= ($_POST['enable_dwf']=="true"		? true : false);
-		$mtli_options['enable_dwg']		= ($_POST['enable_dwg']=="true"		? true : false);
-		$mtli_options['enable_flac']	= ($_POST['enable_flac']=="true"	? true : false);
-		$mtli_options['enable_gif']		= ($_POST['enable_gif']=="true"		? true : false);
-		$mtli_options['enable_gz']		= ($_POST['enable_gz']=="true"		? true : false);
-		$mtli_options['enable_indd']	= ($_POST['enable_indd']=="true"	? true : false);
-		$mtli_options['enable_iso']		= ($_POST['enable_iso']=="true"		? true : false);
-		$mtli_options['enable_jpg']		= ($_POST['enable_jpg']=="true"		? true : false);
-		$mtli_options['enable_log'] 	= ($_POST['enable_log']=="true"		? true : false);
-		$mtli_options['enable_m4v'] 	= ($_POST['enable_m4v']=="true"		? true : false);
-		$mtli_options['enable_midi']	= ($_POST['enable_midi']=="true"	? true : false);
-		$mtli_options['enable_mkv'] 	= ($_POST['enable_mkv']=="true"		? true : false);
-		$mtli_options['enable_mov'] 	= ($_POST['enable_mov']=="true"		? true : false);
-		$mtli_options['enable_mp3']		= ($_POST['enable_mp3']=="true"		? true : false);
-		$mtli_options['enable_mp4'] 	= ($_POST['enable_mp4']=="true"		? true : false);
-		$mtli_options['enable_mpeg']	= ($_POST['enable_mpeg']=="true"	? true : false);
-		$mtli_options['enable_mpg'] 	= ($_POST['enable_mpg']=="true"		? true : false);
-		$mtli_options['enable_odp'] 	= ($_POST['enable_odp']=="true"		? true : false);
-		$mtli_options['enable_ods'] 	= ($_POST['enable_ods']=="true"		? true : false);
-		$mtli_options['enable_odt'] 	= ($_POST['enable_odt']=="true"		? true : false);
-		$mtli_options['enable_oga']		= ($_POST['enable_oga']=="true"		? true : false);
-		$mtli_options['enable_ogg']		= ($_POST['enable_ogg']=="true"		? true : false);
-		$mtli_options['enable_ogv']		= ($_POST['enable_ogv']=="true"		? true : false);
-		$mtli_options['enable_pdf']		= ($_POST['enable_pdf']=="true"		? true : false);
-		$mtli_options['enable_png']		= ($_POST['enable_png']=="true"		? true : false);
-		$mtli_options['enable_ppt']		= ($_POST['enable_ppt']=="true"		? true : false);
-		$mtli_options['enable_pptx']	= ($_POST['enable_pptx']=="true"	? true : false);
-		$mtli_options['enable_psd']		= ($_POST['enable_psd']=="true"		? true : false);
-		$mtli_options['enable_ra']		= ($_POST['enable_ra']=="true"		? true : false);
-		$mtli_options['enable_ram'] 	= ($_POST['enable_ram']=="true"		? true : false);
-		$mtli_options['enable_rm']  	= ($_POST['enable_rm']=="true"		? true : false);
-		$mtli_options['enable_rpm'] 	= ($_POST['enable_rpm']=="true"		? true : false);
-		$mtli_options['enable_rv']		= ($_POST['enable_rv']=="true"		? true : false);
-		$mtli_options['enable_skp']		= ($_POST['enable_skp']=="true"		? true : false);
-		$mtli_options['enable_spx']		= ($_POST['enable_spx']=="true"		? true : false);
-		$mtli_options['enable_tar']		= ($_POST['enable_tar']=="true"		? true : false);
-		$mtli_options['enable_tex']		= ($_POST['enable_tex']=="true"		? true : false);
-		$mtli_options['enable_tgz']		= ($_POST['enable_tgz']=="true"		? true : false);
-		$mtli_options['enable_txt']		= ($_POST['enable_txt']=="true"		? true : false);
-		$mtli_options['enable_vob'] 	= ($_POST['enable_vob']=="true"		? true : false);
-		$mtli_options['enable_wmv'] 	= ($_POST['enable_wmv']=="true"		? true : false);
-		$mtli_options['enable_xls']		= ($_POST['enable_xls']=="true"		? true : false);
-		$mtli_options['enable_xlsx']	= ($_POST['enable_xlsx']=="true"	? true : false);
-		$mtli_options['enable_xml']		= ($_POST['enable_xml']=="true"		? true : false);
-		$mtli_options['enable_xpi']		= ($_POST['enable_xpi']=="true"		? true : false);
-		$mtli_options['enable_zip']		= ($_POST['enable_zip']=="true"		? true : false);
-		$mtli_options['enable_async']	= ($_POST['enable_async']=="true"	? true : false);
-		$mtli_options['enable_hidden_class']	= ($_POST['enable_hidden_class']=="true" 	? true : false);
-		$mtli_options['hidden_classname']		= $_POST['hidden_classname'];
+		$mtli_options['show_file_size']	= ( isset( $_POST['show_file_size'] ) && $_POST['show_file_size']=="true"	? true : false);
+
+		global $mtli_available_mime_types, $mtli_default_true;
+		foreach( $mtli_available_mime_types as $type ) {
+			if( isset( $_POST['enable_' . $type] ) ) {
+				$mtli_options['enable_' . $type]	= ($_POST['enable_' . $type]=="true"		? true : false);
+			}
+			// Not set, get default ? or should this revert back to the already saved version if there is one first ?
+			else {
+				$mtli_options['enable_' . $type]	= ( in_array( $type, $mtli_default_true ) === false ? false : true );
+			}
+		}
+
+		$mtli_options['enable_async']	= ( isset($_POST['enable_async']) && $_POST['enable_async']=="true"	? true : false);
+		$mtli_options['enable_hidden_class']	= ( isset($_POST['enable_hidden_class']) && $_POST['enable_hidden_class']=="true" 	? true : false);
+		if( isset($_POST['hidden_classname']) && !empty($_POST['hidden_classname']) ) {
+			$mtli_options['hidden_classname']		=  $_POST['hidden_classname'];
+		}
+		
 		update_option('mimetype_link_icon_options', $mtli_options);
 
 		_e('Options saved', 'mtli')
@@ -523,6 +428,7 @@ function mtli_display_css($content){
 
 function mtli_show_file_size_css($content){
 	global $fileSizeStyles;
+	$mtli_css = '';
 	if($fileSizeStyles){
 		$mtli_css = "<style type='text/css'>".$fileSizeStyles."</style>";
 	}
