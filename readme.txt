@@ -102,6 +102,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 
 == Changelog ==
 
+= 2.2.2.1 =
+Further fixes suggested by @jrf
+
 = 2.2.2 =
 Fixes suggested by @jrf
 
@@ -214,6 +217,9 @@ Fixed an IE8 bug found by @quartney
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.2.2.1 =
+Further fixes suggested by @jrf
 
 = 2.2.2 =
 Fixes suggested by @jrf

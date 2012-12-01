@@ -1,22 +1,24 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 2.2.2
+ * @version 2.2.2.1
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add file type icons next to links automatically. Change options in the <a href="options-general.php?page=mime_type_link_images.php">settings page</a>
 Author: Toby Cox
-Version: 2.2.2
+Version: 2.2.2.1
 Author URI: http://eagerterrier.co.uk
 Contributor: Keith Parker
 Contributor URI: http://infas.net
+Contributor: Juliette Reinders Folmer
+Contributor URI: http://adviesenzo.nl
 */
 
 
 // constants
-define('mtli_version', '2.2.2', true);
+define('mtli_version', '2.2.2.1', true);
 
 $mtli_options = get_option('mimetype_link_icon_options'); 
 
@@ -59,10 +61,17 @@ function mtli_get_option($option_name) {
     if (preg_match('@www\.(.*)@i', $mtli_default_options['internal_domains'], $parts)>=1) {
       $mtli_default_options['internal_domains'] .= ','.$parts[1];
     }
+    $mtli_default_options['image_size']             = '16';  
+    $mtli_default_options['image_type']     	    = 'png'; 
+    $mtli_default_options['leftorright']     	    = 'left'; 
+    $mtli_default_options['show_file_size']         = false;
+
     global $mtli_available_mime_types, $mtli_default_true;
     foreach( $mtli_available_mime_types as $type ) {
 		$mtli_default_options['enable_' . $type]	= ( in_array( $type, $mtli_default_true ) === false ? false : true );
 	}
+
+    $mtli_default_options['enable_async']     	    = false;  
     $mtli_default_options['enable_hidden_class']    = true;  
     $mtli_default_options['hidden_classname'] 		= 'wp-caption';  
 
@@ -123,9 +132,8 @@ function mtli_options() {
 		$mtli_options['image_size']		= $_POST['image_size'];
 		$mtli_options['image_type']		= $_POST['image_type'];
 		$mtli_options['leftorright']	= $_POST['leftorright'];
-		$mtli_options['show_file_size']	= ($_POST['show_file_size']=="true"	? true : false);
 		$mtli_options['show_file_size']	= ( isset( $_POST['show_file_size'] ) && $_POST['show_file_size']=="true"	? true : false);
-
+		
 		global $mtli_available_mime_types, $mtli_default_true;
 		foreach( $mtli_available_mime_types as $type ) {
 			if( isset( $_POST['enable_' . $type] ) ) {
@@ -142,7 +150,7 @@ function mtli_options() {
 		if( isset($_POST['hidden_classname']) && !empty($_POST['hidden_classname']) ) {
 			$mtli_options['hidden_classname']		=  $_POST['hidden_classname'];
 		}
-		
+
 		update_option('mimetype_link_icon_options', $mtli_options);
 
 		_e('Options saved', 'mtli')
