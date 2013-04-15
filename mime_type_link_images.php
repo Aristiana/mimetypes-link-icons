@@ -1,14 +1,14 @@
 <?php
 /**
  * @package MimeTypeLinkImages
- * @version 2.2.2.1
+ * @version 2.2.3
  */
 /*
 Plugin Name: Mime Type Link Images
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
 Description: This will add file type icons next to links automatically. Change options in the <a href="options-general.php?page=mime_type_link_images.php">settings page</a>
 Author: Toby Cox
-Version: 2.2.2.1
+Version: 2.2.3
 Author URI: http://eagerterrier.co.uk
 Contributor: Keith Parker
 Contributor URI: http://infas.net
@@ -18,7 +18,7 @@ Contributor URI: http://adviesenzo.nl
 
 
 // constants
-define('mtli_version', '2.2.2.1', true);
+define('mtli_version', '2.2.3', true);
 
 $mtli_options = get_option('mimetype_link_icon_options'); 
 
@@ -31,7 +31,7 @@ global $fileSizeStyles;
 
 $mtli_available_sizes = array(16,24,48,64,128);
 $mtli_available_image_types = array('gif','png');
-$mtli_available_mime_types = array('ai','asf','bib','csv','deb','doc','docx','djvu','dmg','dwg','dwf','flac','gif','gz','indd','iso','jpg','log','m4v','midi','mkv','mov','mp3','mp4','mpeg','mpg','odp','ods','odt','oga','ogg','ogv','pdf','png','ppt','pptx','psd','ra','ram','rm','rpm','rv','skp','spx','tar','tex','tgz','txt','vob','wmv','xls','xlsx','xml','xpi','zip');
+$mtli_available_mime_types = array('ai','asf','bib','csv','deb','doc','docx','djvu','dmg','dwg','dwf','epub','flac','gif','gz','indd','iso','jpg','log','m4v','midi','mkv','mov','mp3','mp4','mpeg','mpg','odp','ods','odt','oga','ogg','ogv','pdf','png','ppt','pptx','psd','ra','ram','rm','rpm','rv','skp','spx','tar','tex','tgz','txt','vob','wmv','xls','xlsx','xml','xpi','zip');
 $mtli_default_true = array('pdf');
 
 function mtli_set_option($option_name, $option_value) {
@@ -336,6 +336,17 @@ function mimetype_to_icon($content) {
 function mtli_determine_file_paths($matches, $content){
 	global $fileSizeStyles;
 	if(mtli_get_option('show_file_size')===true){
+		foreach($matches as $k=>$match){
+			if($k>0){
+				foreach($match as $key=>$thismatch){
+					if($this_filesize = mtli_get_size($thismatch)){
+						$content = preg_replace('/('.str_replace('/','\/',$thismatch).'(#[^" ]+"|")) rel="mtli_filesize /', '\\1 rel="mtli_filesize'.str_replace('.','',$this_filesize).' ', $content);
+					}
+				}
+			}
+		}
+	}
+	if(mtli_get_option('hidden_classname')){
 		foreach($matches as $k=>$match){
 			if($k>0){
 				foreach($match as $key=>$thismatch){

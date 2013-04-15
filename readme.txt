@@ -1,9 +1,9 @@
 === MimeTypes Link Icons ===
 Contributors: eagerterrier, jrf
 Donate link: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
-Tags: mime-type, icons, ai, asf, bib, csv, deb, doc, docx, djvu, dmg, dwg, dwf, flac, gif, gz, indd, iso, jpg, log, m4v, midi, mkv, mov, mp3, mp4, mpeg, mpg, odp, ods, odt, oga, ogg, ogv, pdf, png, ppt, pptx, psd, ra, ram, rm, rpm, rv, skp, spx, tar, tex, tgz, txt, vob, wmv, xls, xlsx, xml, xpi, zip.
+Tags: mime-type, icons, ai, asf, bib, csv, deb, doc, docx, djvu, dmg, dwg, dwf, epub, flac, gif, gz, indd, iso, jpg, log, m4v, midi, mkv, mov, mp3, mp4, mpeg, mpg, odp, ods, odt, oga, ogg, ogv, pdf, png, ppt, pptx, psd, ra, ram, rm, rpm, rv, skp, spx, tar, tex, tgz, txt, vob, wmv, xls, xlsx, xml, xpi, zip.
 Requires at least: 1.5.1.3
-Tested up to: 3.4.2
+Tested up to: 3.5.1
 Stable tag: trunk
 
 Adds icons automatically to any uploads inserted into your blog posts.
@@ -25,6 +25,7 @@ Supported Extensions:
 * .dmg
 * .dwg
 * .dwf
+* .epub
 * .flac
 * .gif
 * .gz
@@ -101,6 +102,9 @@ No. It searches your post for any links containing the mimetype extensions you h
 4. Now you can get mime type link images to add the file size of your attachment, too.
 
 == Changelog ==
+
+= 2.2.3 =
+Adding epub due to user request
 
 = 2.2.2.1 =
 Further fixes suggested by @jrf
@@ -217,6 +221,9 @@ Fixed an IE8 bug found by @quartney
 * Typo in CSS caused some images not to show
 
 == Upgrade Notice ==
+
+= 2.2.3 =
+Adding epub extension due to user request
 
 = 2.2.2.1 =
 Further fixes suggested by @jrf
