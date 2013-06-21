@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package MimeTypeLinkImages
+ * @version 3.1.1
+ */
 /*
 Plugin Name: MimeTypes Link Icons
 Plugin URI: http://blog.eagerterrier.co.uk/2010/10/holy-cow-ive-gone-and-made-a-mime-type-wordpress-plugin/
